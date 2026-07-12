@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="padding-bottom: 40px;">
+    <h2>System Settings</h2>
+
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <!-- Profile Settings -->
+        <div style="flex: 1; min-width: 300px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h3 style="margin-top: 0;">Profile Information</h3>
+            <form action="/api/settings/profile" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" name="name" placeholder="Full Name" value="Navneet Saini" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+                <input type="email" name="email" placeholder="Email Address" value="admin@transitops.com" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+                <button type="submit" class="btn" style="background-color: #007bff; align-self: flex-start;">Update Profile</button>
+            </form>
+        </div>
+
+        <!-- Preferences Settings -->
+        <div style="flex: 1; min-width: 300px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h3 style="margin-top: 0;">System Preferences</h3>
+            <form action="/api/settings/preferences" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+                <label style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" name="notifications" checked> Enable Email Notifications
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" name="dark_mode"> Enable Dark Mode (Beta)
+                </label>
+                <button type="submit" class="btn" style="background-color: #28a745; align-self: flex-start;">Save Preferences</button>
+            </form>
+        </div>
+        
+        <!-- Security Settings -->
+        <div style="flex: 1; min-width: 300px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h3 style="margin-top: 0;">Security</h3>
+            <form action="/api/settings/security" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="password" name="current_password" placeholder="Current Password" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+                <input type="password" name="new_password" placeholder="New Password" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+                <button type="submit" class="btn" style="background-color: #dc3545; align-self: flex-start;">Change Password</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

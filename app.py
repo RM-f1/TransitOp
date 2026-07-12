@@ -52,7 +52,12 @@ def create_app():
     def fuel_expense():
         mock_user = {'role': 'Fleet Manager'}
         return render_template('fuel_expense.html', current_user=mock_user)
-
+    
+    # Temporary UI route for Settings
+    @app.route('/settings')
+    def settings():
+        mock_user = {'role': 'Fleet Manager'}
+        return render_template('settings.html', current_user=mock_user)
     return app
 
 if __name__ == '__main__':
