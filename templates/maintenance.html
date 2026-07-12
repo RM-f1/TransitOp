@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="padding-bottom: 40px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>Maintenance Logs</h2>
+        <button class="btn" style="background-color: #28a745;">+ Record Service</button>
+    </div>
+
+    <!-- Maintenance Form -->
+    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 30px;">
+        <h3 style="margin-top: 0;">Log Vehicle for Maintenance</h3>
+        <form style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <select name="vehicle_id" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+                <option value="">Select Vehicle</option>
+                <option value="VAN-05">VAN-05</option>
+            </select>
+            <input type="text" name="issue_description" placeholder="Issue (e.g., Oil Change)" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="date" name="service_date" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="number" name="cost" placeholder="Estimated Cost ($)" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+            <button type="submit" class="btn" style="background-color: #dc3545;">Send to Shop</button>
+        </form>
+    </div>
+
+    <!-- Service Log Table -->
+    <h3>Service History</h3>
+    <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <thead>
+            <tr style="background-color: #2c3e50; color: white; text-align: left;">
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Vehicle</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Issue</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Date</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Status</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">TRUCK-02</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">Brake Pad Replacement</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">2026-07-10</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">
+                    <span style="background-color: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 12px; font-size: 14px;">In Shop</span>
+                </td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">
+                    <button class="btn" style="padding: 5px 10px; font-size: 12px; background-color: #28a745;">Close Service</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

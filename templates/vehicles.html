@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="padding-bottom: 40px;">
+    <h2>Vehicle Registry</h2>
+    
+    <!-- Add Vehicle Form (Visual Shell) -->
+    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 30px;">
+        <h3 style="margin-top: 0;">Add New Vehicle</h3>
+        <!-- Notice the input names. Your teammate will use these in their routes/vehicles.py -->
+        <form style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <input type="text" name="registration_number" placeholder="Reg Number (e.g., VAN-05)" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="text" name="model" placeholder="Model (e.g., Ford Transit)" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="number" name="max_capacity" placeholder="Max Capacity (kg)" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="number" name="acquisition_cost" placeholder="Acquisition Cost ($)" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <button type="submit" class="btn" style="background-color: #28a745;">Save Vehicle</button>
+        </form>
+    </div>
+
+    <!-- Vehicles Table -->
+    <h3>Current Fleet</h3>
+    <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <thead>
+            <tr style="background-color: #2c3e50; color: white; text-align: left;">
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Reg Number</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Model</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Max Capacity</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">VAN-05</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">Ford Transit</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">500 kg</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">
+                    <span style="background-color: #d4edda; color: #155724; padding: 4px 8px; border-radius: 12px; font-size: 14px;">Available</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

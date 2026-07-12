@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="padding-bottom: 40px;">
+    <h2>Reports & Analytics</h2>
+
+    <!-- Top Summary Cards -->
+    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px;">
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 200px;">
+            <h3 style="margin-top: 0; font-size: 16px; color: #555;">Fuel Efficiency</h3>
+            <p style="font-size: 28px; font-weight: bold; color: #17a2b8; margin: 0;">{{ data.fuel_efficiency }}</p>
+        </div>
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 200px;">
+            <h3 style="margin-top: 0; font-size: 16px; color: #555;">Operational Cost</h3>
+            <p style="font-size: 28px; font-weight: bold; color: #dc3545; margin: 0;">{{ data.operational_cost }}</p>
+        </div>
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 200px;">
+            <h3 style="margin-top: 0; font-size: 16px; color: #555;">Average Fleet ROI</h3>
+            <p style="font-size: 28px; font-weight: bold; color: #28a745; margin: 0;">{{ data.avg_roi }}</p>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 30px;">
+        <h3 style="margin-top: 0; color: #333;">Vehicle ROI Comparison</h3>
+        <canvas id="roiChart" height="100"></canvas>
+    </div>
+
+    <!-- Risk / Challenges Section -->
+    <div style="background: #e2e3e5; border-left: 5px solid #6c757d; padding: 15px; border-radius: 4px;">
+        <h4 style="margin: 0 0 10px 0; color: #383d41;">Long-Term Challenges</h4>
+        <p style="margin: 0; color: #383d41;">Fuel costs have risen by 4% this quarter. Consider optimizing dispatch routes to maintain current ROI levels.</p>
+    </div>
+</div>
+
+<!-- Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Load your custom chart logic -->
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% endblock %}
