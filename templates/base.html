@@ -12,44 +12,34 @@
     <div class="sidebar">
         <h2 style="text-align: center;">TransitOps</h2>
         <ul style="list-style: none; padding-left: 20px;">
-            <li><a href="/dashboard" style="color: white; text-decoration: none;">Dashboard</a><br><br></li>
+            <li><a href="{{ url_for('dashboard.dashboard') }}" style="color: white; text-decoration: none;">Dashboard</a><br><br></li>
             
-            <!-- Display for Fleet Managers -->
-            {% if current_user.role == 'Fleet Manager' %}
-            <li><a href="/vehicles" style="color: white; text-decoration: none;">Vehicles</a><br><br></li>
-            <li><a href="/drivers" style="color: white; text-decoration: none;">Drivers</a><br><br></li>
-            <li><a href="/trips" style="color: white; text-decoration: none;">Trips</a><br><br></li>
-            <li><a href="/maintenance" style="color: white; text-decoration: none;">Maintenance</a><br><br></li>
-            <li><a href="/fuel_expense" style="color: white; text-decoration: none;">Fuel & Expenses</a><br><br></li>
-            <li><a href="/settings" style="color: white; text-decoration: none;">Settings</a><br><br></li>
+            <!-- Admin Role Access -->
+            {% if current_user.is_authenticated and current_user.role == 'admin' %}
+                <li><a href="{{ url_for('vehicles') }}" style="color: white; text-decoration: none;">Vehicles</a><br><br></li>
+                <li><a href="{{ url_for('maintenance') }}" style="color: white; text-decoration: none;">Maintenance</a><br><br></li>
+                <li><a href="{{ url_for('settings') }}" style="color: white; text-decoration: none;">Settings</a><br><br></li>
             {% endif %}
 
-            <!-- Display for Drivers -->
-            {% if current_user.role == 'Driver' %}
-            <li><a href="/vehicles" style="color: white; text-decoration: none;">Vehicles</a><br><br></li>
-            <li><a href="/drivers" style="color: white; text-decoration: none;">Drivers</a><br><br></li>
-            <li><a href="/trips" style="color: white; text-decoration: none;">Trips</a><br><br></li>
-            {% endif %}
-
-            <!-- Display for Safety Officers -->
-            {% if current_user.role == 'Safety Officer' %}
-            <li><a href="/drivers" style="color: white; text-decoration: none;">Drivers</a><br><br></li>
-            {% endif %}
-
-            <!-- Display for Financial Analysts -->
-            {% if current_user.role == 'Financial Analyst' %}
-            <li><a href="/maintenance" style="color: white; text-decoration: none;">Maintenance</a><br><br></li>
-            <li><a href="/fuel_expense" style="color: white; text-decoration: none;">Fuel & Expenses</a><br><br></li>
+            <!-- Admin and Dispatcher Shared Access -->
+            {% if current_user.is_authenticated and (current_user.role == 'admin' or current_user.role == 'dispatcher') %}
+                <li><a href="{{ url_for('trips.list_trips') }}" style="color: white; text-decoration: none;">Trips</a><br><br></li>
+                <li><a href="{{ url_for('drivers') }}" style="color: white; text-decoration: none;">Drivers</a><br><br></li>
+                <li><a href="{{ url_for('fuel_expense') }}" style="color: white; text-decoration: none;">Fuel & Expenses</a><br><br></li>
             {% endif %}
             
-            <li><a href="/reports" style="color: white; text-decoration: none;">Reports & Challenges</a></li>
+            <li><a href="{{ url_for('reports.reports') }}" style="color: white; text-decoration: none;">Reports & Challenges</a></li>
+            
+            <!-- Logout Link -->
+            {% if current_user.is_authenticated %}
+                <li><br><br><a href="{{ url_for('auth.logout') }}" style="color: red; text-decoration: none;">Logout</a></li>
+            {% endif %}
         </ul>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
         {% block content %}
-        <!-- Page specific content will load here -->
         {% endblock %}
     </div>
 

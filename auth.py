@@ -31,7 +31,7 @@ def load_user(user_id):
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for("dashboard.index"))
+        return redirect(url_for("dashboard.dashboard"))
 
     if request.method == "POST":
         username = request.form.get("username", "").strip()
@@ -48,7 +48,7 @@ def login():
             flash(f"Welcome back, {user.username}.", "success")
 
             next_page = request.args.get("next")
-            return redirect(next_page or url_for("dashboard.index"))
+            return redirect(next_page or url_for("dashboard.dashboard"))
 
         flash("Invalid username or password.", "danger")
         return render_template("login.html")
