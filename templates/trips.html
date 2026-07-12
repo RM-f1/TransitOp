@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="padding-bottom: 40px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>Trip Management</h2>
+        <button class="btn" style="background-color: #28a745;">+ Create New Trip</button>
+    </div>
+
+    <!-- Create Trip Form (Visual Shell) -->
+    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 30px;">
+        <h3 style="margin-top: 0;">Dispatch New Trip</h3>
+        <form style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <input type="text" name="source" placeholder="Source Location" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="text" name="destination" placeholder="Destination" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            
+            <!-- In the real app, these will be populated from the database -->
+            <select name="vehicle_id" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+                <option value="">Select Available Vehicle</option>
+                <option value="VAN-05">VAN-05 (500kg max)</option>
+            </select>
+            
+            <select name="driver_id" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+                <option value="">Select Available Driver</option>
+                <option value="DL-9876543">Alex</option>
+            </select>
+
+            <input type="number" name="cargo_weight" placeholder="Cargo Weight (kg)" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="number" name="planned_distance" placeholder="Planned Distance (km)" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            
+            <button type="submit" class="btn" style="background-color: #007bff;">Dispatch Trip</button>
+        </form>
+    </div>
+
+    <!-- Live Trip Board -->
+    <h3>Active & Recent Trips</h3>
+    <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <thead>
+            <tr style="background-color: #2c3e50; color: white; text-align: left;">
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Trip ID</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Route</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Vehicle</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Driver</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Status</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">TRP-1042</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">Warehouse A &rarr; Downtown</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">VAN-05</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">Alex</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">
+                    <span style="background-color: #fff3cd; color: #856404; padding: 4px 8px; border-radius: 12px; font-size: 14px;">On Trip</span>
+                </td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">
+                    <button class="btn" style="padding: 5px 10px; font-size: 12px; background-color: #17a2b8;">Complete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

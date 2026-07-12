@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="padding-bottom: 40px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>Driver Management</h2>
+        <button class="btn" style="background-color: #28a745;">+ Add New Driver</button>
+    </div>
+
+    <!-- Add Driver Form (Visual Shell) -->
+    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 30px;">
+        <h3 style="margin-top: 0;">Register Driver</h3>
+        <form style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <input type="text" name="name" placeholder="Full Name" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="text" name="license_number" placeholder="License Number" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="text" name="license_category" placeholder="License Category (e.g., CDL)" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="date" name="license_expiry" title="License Expiry Date" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <input type="tel" name="contact_number" placeholder="Contact Number" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+            <button type="submit" class="btn" style="background-color: #007bff;">Save Driver</button>
+        </form>
+    </div>
+
+    <!-- Drivers Table -->
+    <h3>Active Drivers</h3>
+    <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <thead>
+            <tr style="background-color: #2c3e50; color: white; text-align: left;">
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Name</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">License No.</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Expiry Date</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Safety Score</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Status</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ddd;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">Alex</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">DL-9876543</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd; color: #155724;">2028-05-12</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">98/100</td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">
+                    <span style="background-color: #d4edda; color: #155724; padding: 4px 8px; border-radius: 12px; font-size: 14px;">Available</span>
+                </td>
+                <td style="padding: 12px; border-bottom: 1px solid #ddd;">
+                    <button class="btn" style="padding: 5px 10px; font-size: 12px;">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

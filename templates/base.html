@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransitOps Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Sidebar / Visual RBAC -->
+    <div class="sidebar">
+        <h2 style="text-align: center;">TransitOps</h2>
+        <ul style="list-style: none; padding-left: 20px;">
+            <li><a href="/dashboard" style="color: white; text-decoration: none;">Dashboard</a><br><br></li>
+            
+            <!-- Display for Fleet Managers -->
+            {% if current_user.role == 'Fleet Manager' %}
+            <li><a href="/vehicles" style="color: white; text-decoration: none;">Vehicles</a><br><br></li>
+            <li><a href="/drivers" style="color: white; text-decoration: none;">Drivers</a><br><br></li>
+            <li><a href="/maintenance" style="color: white; text-decoration: none;">Maintenance</a><br><br></li>
+            <li><a href="/fuel_expense" style="color: white; text-decoration: none;">Fuel & Expenses</a><br><br></li>
+            {% endif %}
+
+            <!-- Display for Drivers -->
+            {% if current_user.role == 'Driver' %}
+            <li><a href="/trips" style="color: white; text-decoration: none;">Trips</a><br><br></li>
+            {% endif %}
+            
+            <li><a href="/reports" style="color: white; text-decoration: none;">Reports & Challenges</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        {% block content %}
+        <!-- Page specific content will load here -->
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        TransitOps Smart Transport Operations Platform &copy; 2026
+    </footer>
+
+</body>
+</html>
